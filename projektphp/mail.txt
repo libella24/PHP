@@ -1,0 +1,4 @@
+Anfrage über Kontaktformular:
+                Name:Bruno Banani
+                E-Mail:reginafleckl@me.com
+                Nachricht:blablabla
