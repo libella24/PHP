@@ -1,0 +1,37 @@
+
+SQL - Datenbank verbinden (MYSQLI_CONNECT (host, user, password, db-name))
+==========================================================================
+
+    $db = mysqli_connect("localhost", "root", "", "php2");
+
+
+MySQLI mitteilen, in welchem Zeichenformat die Daten kommen (MYSQLI_SET_CHARSET (db, "utf8"))
+==============================================================================================
+
+mysqli_set_charset($db, "utf8");
+
+
+Escape special characters from Posts (MYSQLI_REAL_ESCAPE_STRING)
+=========================================================
+
+Eingabe "username" um Sonderzeichen bereinigen
+siehe php2/login.php, Nr. 3
+Dem Post "username" wird die Variable "$sql_benutzername" zugewiesen. Gleichzeitig ist diese Variable von Sonderzeichen bereinigt. Im weiteren Programmverlauf soll nur mehr die Variable "$sql_benutzername" verwendet werden.
+
+    $sql_benutzername = mysqli_real_escape_string($db, $_POST["benutzername"]); // bewahrt vor SQL Injections
+
+
+Datenbankzugriff und -Abfrage (MYSQLI_QUERY (db, "Statement"))
+==============================================================
+
+    $result = mysqli_query($db,"SELECT * FROM benutzer WHERE benutzername = '{$sql_benutzername}'");
+
+Datensatz aus Abfrage in ein php Array umwandeln (MYSQLI_FETCH_ASSOC (Abfrageergebnis))
+========================================================================================
+Das Abfrageergebnis wird in eine neue $row des Arrays gespeichert:
+
+        $row = mysqli_fetch_assoc($result); 
+
+
+        speichern, abrufen, anzeigen, 
+

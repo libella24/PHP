@@ -1,0 +1,20 @@
+
+(1) Prüfen, ob das Formular abgeschickt wurde
+=================================================
+Sind die POSTs nicht leer, dann...
+
+    if(!empty($_POST)){
+    
+(2) Fehler ausgeben, wenn entweder der Benutzername oder das Passwort leer sind
+================================================================================
+    if(empty($_POST["username"]) || empty($_POST["password"])){ // OR, um beide Felder abzufragen
+        $error = "Benutzername oder Passwort ist leer.";
+        echo $error;
+    } else { 
+
+
+(3) Eingabe "username" um Sonderzeichen bereinigen
+====================================================
+        //Dem Post "username" wird die Variable "$sql_benutzername" zugewiesen. Gleichzeitig ist diese Variable von Sonderzeichen bereinigt. Im weiteren Programmverlauf soll nur mehr die Variable "$sql_benutzername" verwendet werden.
+        $sql_benutzername = mysqli_real_escape_string($db, $_POST["benutzername"]); // bewahrt vor SQL Injections
+    }
